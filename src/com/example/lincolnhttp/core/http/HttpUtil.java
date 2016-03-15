@@ -25,32 +25,7 @@ import com.example.lincolnhttp.core.http.util.UrlUtil;
 public class HttpUtil {
 	public static void get(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
 		rootUrl = UrlUtil.dealGetParams(rootUrl, params);
-		final String urlString = rootUrl;
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-				try {
-					URL url = new URL(urlString);
-					HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-					urlConnection.setRequestMethod(HttpMethod.GET.toString());
-					urlConnection.connect();
-					
-					InputStream inputStream = urlConnection.getInputStream();
-					ByteArrayOutputStream byteOutSteam = new ByteArrayOutputStream();
-					byte[] buffer = new byte[1024];
-					int length = -1;
-					while ((length = inputStream.read(buffer)) != -1) {
-						byteOutSteam.write(buffer, 0, length);
-					}
-					String resultString = byteOutSteam.toString();
-					JSONObject object = new JSONObject(resultString);
-					callBack.onSuccess(null, object);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-			}
-		}).start();
+		TaskController taskController = TaskController.registrInstance();
+		taskController.start(rootUrl,HttpMethod.GET, params, callBack);
 	}
 }
