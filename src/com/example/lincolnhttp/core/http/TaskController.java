@@ -8,7 +8,11 @@ import org.json.JSONObject;
 import com.example.lincolnhttp.core.http.bean.HttpMethod;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
-
+/**
+ * 线程控制类
+ * @author lincoln
+ *
+ */
 public class TaskController {
 	private static TaskController taskController;
 	private static ExecutorService executor;

@@ -9,21 +9,27 @@ import org.json.JSONObject;
 
 import com.example.lincolnhttp.core.http.bean.HttpMethod;
 import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
-
+/**
+ * 任务线程类
+ * @author lincoln
+ *
+ */
 public class HttpTask implements Runnable{	
 	private String rootUrl;
 	private LincolnCallBack callBack;
+	private HttpMethod method;
 	
 	public HttpTask(String rootUrl,HttpMethod method,LincolnCallBack callback){
 		this.rootUrl = rootUrl;
 		this.callBack = callback;
+		this.method = method;
 	}
 	
 	public void sendRequest(){
 		try {
 			URL url = new URL(rootUrl);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-			urlConnection.setRequestMethod(HttpMethod.GET.toString());
+			urlConnection.setRequestMethod(method.toString());
 			urlConnection.connect();
 			
 			InputStream inputStream = urlConnection.getInputStream();
