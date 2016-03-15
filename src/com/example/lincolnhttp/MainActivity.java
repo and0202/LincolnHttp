@@ -1,29 +1,20 @@
 package com.example.lincolnhttp;
 
-import java.util.logging.Logger;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Handler.Callback;
-import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.example.lincolnhttp.core.http.HttpUtil;
+import com.example.lincolnhttp.core.http.bean.HttpResult;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
+import com.example.lincolnhttp.core.http.callback.JsonObjectCallback;
 import com.example.lincolnhttp.core.http.util.LogUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
 	String root = "http://gc.ditu.aliyun.com/regeocoding?l=39.938133,116.395739&type=001";
-	 Handler handler = new Handler(new Callback() {
-		
-		@Override
-		public boolean handleMessage(Message msg) {
-			LogUtil.d(msg.what+" - "+msg.obj);
-			return false;
-		}
-	});
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +38,13 @@ public class MainActivity extends Activity implements OnClickListener {
 				
 				@Override
 				public void run() {
-					HttpUtil.get(root, params,handler);
+					HttpUtil.get(root, params,new JsonObjectCallback<JSONObject>() {
+						@Override
+						public void onSuccess(HttpResult result, JSONObject t) {
+							super.onSuccess(result, t);
+							LogUtil.d("onSuccess"+t.toString());
+						}
+					});
 				}
 			}).start();
 			break;

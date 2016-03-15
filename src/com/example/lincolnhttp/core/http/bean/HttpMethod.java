@@ -1,4 +1,4 @@
-package com.example.lincolnhttp.core.http;
+package com.example.lincolnhttp.core.http.bean;
 
 public enum HttpMethod {
 	GET("GET"),

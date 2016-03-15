@@ -5,10 +5,14 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONObject;
+
 import android.os.Handler;
 import android.os.Message;
 
+import com.example.lincolnhttp.core.http.bean.HttpMethod;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
+import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
 import com.example.lincolnhttp.core.http.util.LogUtil;
 import com.example.lincolnhttp.core.http.util.UrlUtil;
 
@@ -19,7 +23,7 @@ import com.example.lincolnhttp.core.http.util.UrlUtil;
  * 
  */
 public class HttpUtil {
-	public static void get(String rootUrl, RequestParams params,Handler handler) {
+	public static void get(String rootUrl, RequestParams params,LincolnCallBack<JSONObject> callBack) {
 		try {
 			rootUrl = UrlUtil.dealGetParams(rootUrl, params);
 			LogUtil.d("url:"+rootUrl);
@@ -37,10 +41,12 @@ public class HttpUtil {
 			}
 			
 			String resultString = byteOutSteam.toString();
-			Message msg = new Message();
-			msg.what = 0;
-			msg.obj = resultString;
-			handler.sendMessage(msg);
+			JSONObject object = new JSONObject(resultString);
+			callBack.onSuccess(null, object);
+//			Message msg = new Message();
+//			msg.what = 0;
+//			msg.obj = resultString;
+//			handler.sendMessage(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
