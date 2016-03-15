@@ -9,7 +9,5 @@ import com.example.lincolnhttp.core.http.bean.HttpResult;
  *
  */
 public abstract class JsonObjectCallback<JSONObject> implements LincolnCallBack<JSONObject>{
-
-
-
+	
 }

@@ -36,22 +36,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		case R.id.btn_get:
 			final RequestParams params = new RequestParams();
 			params.put("name", "lincoln");
-			new Thread(new Runnable() {
-				
+			HttpUtil.get(root, params,new JsonObjectCallback<JSONObject>() {
 				@Override
-				public void run() {
-					HttpUtil.get(root, params,new JsonObjectCallback<JSONObject>() {
-						@Override
-						public void onSuccess(HttpResult result, JSONObject t) {
-							LogUtil.d("onSuccess"+t.toString());
-						}
-
-						@Override
-						public void onFailed() {
-						}
-					});
+				public void onSuccess(HttpResult result, JSONObject t) {
+					LogUtil.d("onSuccess"+t.toString());
 				}
-			}).start();
+
+				@Override
+				public void onFailed() {
+				}
+			});
+		
 			break;
 		}
 	}
