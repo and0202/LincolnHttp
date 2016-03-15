@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 参数实体类
+ * 请求参数实体类
  * @author lincoln
  *
  */

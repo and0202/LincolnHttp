@@ -3,7 +3,11 @@ package com.example.lincolnhttp.core.http.util;
 import java.util.Map;
 
 import com.example.lincolnhttp.core.http.bean.RequestParams;
-
+/**
+ * Url处理工具类
+ * @author lincoln
+ *
+ */
 public class UrlUtil {
 	/**
 	 * 处理Get请求参数

@@ -40,7 +40,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				
 				@Override
 				public void run() {
-					Looper.prepare();
 					HttpUtil.get(root, params,new JsonObjectCallback<JSONObject>() {
 						@Override
 						public void onSuccess(HttpResult result, JSONObject t) {

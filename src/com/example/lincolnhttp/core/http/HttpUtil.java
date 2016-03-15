@@ -17,7 +17,7 @@ import com.example.lincolnhttp.core.http.util.LogUtil;
 import com.example.lincolnhttp.core.http.util.UrlUtil;
 
 /**
- * 网络请求类入口
+ * 网络请求入口
  * 
  * @author lincoln
  * 
@@ -43,10 +43,6 @@ public class HttpUtil {
 			String resultString = byteOutSteam.toString();
 			JSONObject object = new JSONObject(resultString);
 			callBack.onSuccess(null, object);
-//			Message msg = new Message();
-//			msg.what = 0;
-//			msg.obj = resultString;
-//			handler.sendMessage(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

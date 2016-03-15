@@ -2,7 +2,7 @@ package com.example.lincolnhttp.core.http.util;
 
 import android.util.Log;
 /**
- * log请求
+ * log输出工具类
  * @author lincoln
  *
  */
