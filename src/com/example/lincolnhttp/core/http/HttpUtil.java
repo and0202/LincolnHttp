@@ -2,13 +2,15 @@ package com.example.lincolnhttp.core.http;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
+
+import android.os.Handler;
+import android.os.Message;
 
 import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.util.LogUtil;
+import com.example.lincolnhttp.core.http.util.UrlUtil;
 
 /**
  * 网络请求类入口
@@ -17,11 +19,13 @@ import com.example.lincolnhttp.core.http.util.LogUtil;
  * 
  */
 public class HttpUtil {
-	public static void get(String rootUrl, String method, RequestParams params) {
+	public static void get(String rootUrl, RequestParams params,Handler handler) {
 		try {
+			rootUrl = UrlUtil.dealGetParams(rootUrl, params);
+			LogUtil.d("url:"+rootUrl);
 			URL url = new URL(rootUrl);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-			urlConnection.setRequestMethod(method);
+			urlConnection.setRequestMethod(HttpMethod.GET.toString());
 			urlConnection.connect();
 			InputStream inputStream = urlConnection.getInputStream();
 
@@ -33,8 +37,10 @@ public class HttpUtil {
 			}
 			
 			String resultString = byteOutSteam.toString();
-			LogUtil.d(resultString);
-
+			Message msg = new Message();
+			msg.what = 0;
+			msg.obj = resultString;
+			handler.sendMessage(msg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

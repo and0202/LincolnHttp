@@ -11,10 +11,14 @@ import java.util.Map;
  */
 public class RequestParams implements Serializable {
 	private static Map<String, String> mapString = new HashMap<String, String>();
-	public static void name(String key ,String value) {
+	public static void put(String key ,String value) {
 		mapString.put(key, value);
 	}
 	public static String get(String key ){
 		return mapString.get(key);
+	}
+	
+	public static Map<String, String> getMapString(){
+		return mapString;
 	}
 }

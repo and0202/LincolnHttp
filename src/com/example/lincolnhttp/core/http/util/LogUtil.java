@@ -1,7 +1,11 @@
 package com.example.lincolnhttp.core.http.util;
 
 import android.util.Log;
-
+/**
+ * log请求
+ * @author lincoln
+ *
+ */
 public class LogUtil {
 	private static boolean DEBUG = true;
 	private static  String tag="lincoln";
