@@ -6,7 +6,10 @@ package com.example.lincolnhttp.core.http.bean;
  */
 public enum HttpMethod {
 	GET("GET"),
-	POST("POST");
+	POST("POST"),
+	PATCH("PATCH"),
+	PUT("PUT"),
+	DELETE("DELETE");
 	private final String value;
 	
 	 HttpMethod(String value){
