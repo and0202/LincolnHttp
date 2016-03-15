@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -12,6 +13,7 @@ import com.example.lincolnhttp.core.http.bean.HttpResult;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.callback.JsonObjectCallback;
 import com.example.lincolnhttp.core.http.util.LogUtil;
+import com.example.lincolnhttp.core.http.util.ToastUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
 	String root = "http://gc.ditu.aliyun.com/regeocoding?l=39.938133,116.395739&type=001";
@@ -38,11 +40,15 @@ public class MainActivity extends Activity implements OnClickListener {
 				
 				@Override
 				public void run() {
+					Looper.prepare();
 					HttpUtil.get(root, params,new JsonObjectCallback<JSONObject>() {
 						@Override
 						public void onSuccess(HttpResult result, JSONObject t) {
-							super.onSuccess(result, t);
 							LogUtil.d("onSuccess"+t.toString());
+						}
+
+						@Override
+						public void onFailed() {
 						}
 					});
 				}
