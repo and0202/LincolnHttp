@@ -13,6 +13,7 @@ import android.os.Message;
 import com.example.lincolnhttp.core.http.bean.HttpMethod;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
+import com.example.lincolnhttp.core.http.util.GlobalUtil;
 import com.example.lincolnhttp.core.http.util.LogUtil;
 import com.example.lincolnhttp.core.http.util.UrlUtil;
 
@@ -26,7 +27,8 @@ public class HttpUtil {
 	/**
 	 * Get请求
 	 */
-	public static void get(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+	public static void get(String rootPath, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+		String rootUrl = GlobalUtil.ROOTURL.concat(rootPath);
 		rootUrl = UrlUtil.dealGetParams(rootUrl, params);
 		TaskController taskController = TaskController.registrInstance();
 		taskController.start(rootUrl, HttpMethod.GET, params, callBack);
@@ -35,7 +37,8 @@ public class HttpUtil {
 	/**
 	 * Post请求
 	 */
-	public static void post(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+	public static void post(String rootPath, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+		String rootUrl = GlobalUtil.ROOTURL.concat(rootPath);
 		TaskController taskController = TaskController.registrInstance();
 		taskController.start(rootUrl, HttpMethod.POST, params, callBack);
 	}
@@ -43,7 +46,8 @@ public class HttpUtil {
 	/**
 	 * Put请求
 	 */
-	public static void put(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+	public static void put(String rootPath, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+		String rootUrl = GlobalUtil.ROOTURL.concat(rootPath);
 		TaskController taskController = TaskController.registrInstance();
 		taskController.start(rootUrl, HttpMethod.PUT, params, callBack);
 	}
@@ -51,7 +55,8 @@ public class HttpUtil {
 	/**
 	 * Patch请求
 	 */
-	public static void patch(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+	public static void patch(String rootPath, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+		String rootUrl = GlobalUtil.ROOTURL.concat(rootPath);
 		TaskController taskController = TaskController.registrInstance();
 		taskController.start(rootUrl, HttpMethod.PATCH, params, callBack);
 	}
@@ -59,7 +64,8 @@ public class HttpUtil {
 	/**
 	 * Delete请求
 	 */
-	public static void delete(String rootUrl, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+	public static void delete(String rootPath, RequestParams params, final LincolnCallBack<JSONObject> callBack) {
+		String rootUrl = GlobalUtil.ROOTURL.concat(rootPath);
 		TaskController taskController = TaskController.registrInstance();
 		taskController.start(rootUrl, HttpMethod.DELETE, params, callBack);
 	}

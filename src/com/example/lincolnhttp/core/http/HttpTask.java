@@ -8,6 +8,7 @@ import java.net.URL;
 import org.json.JSONObject;
 
 import com.example.lincolnhttp.core.http.bean.HttpMethod;
+import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
 /**
  * 任务线程类
@@ -18,10 +19,12 @@ public class HttpTask implements Runnable{
 	private String rootUrl;
 	private LincolnCallBack callBack;
 	private HttpMethod method;
+	private RequestParams params;
 	
-	public HttpTask(String rootUrl,HttpMethod method,LincolnCallBack callback){
+	public HttpTask(String rootUrl,HttpMethod method,RequestParams params,LincolnCallBack callback){
 		this.rootUrl = rootUrl;
 		this.callBack = callback;
+		this.params = params;
 		this.method = method;
 	}
 	
@@ -30,6 +33,12 @@ public class HttpTask implements Runnable{
 			URL url = new URL(rootUrl);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setRequestMethod(method.toString());
+			if (method != HttpMethod.GET) {
+				urlConnection.setDoOutput(true);
+				byte[] bytes = params.toString().getBytes();
+				urlConnection.getOutputStream().write(bytes);
+			}
+			
 			urlConnection.connect();
 			
 			InputStream inputStream = urlConnection.getInputStream();

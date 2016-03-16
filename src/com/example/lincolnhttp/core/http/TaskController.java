@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.example.lincolnhttp.core.http.bean.HttpMethod;
 import com.example.lincolnhttp.core.http.bean.RequestParams;
 import com.example.lincolnhttp.core.http.callback.LincolnCallBack;
+import com.example.lincolnhttp.core.http.util.LogUtil;
 /**
  * 线程控制类
  * @author lincoln
@@ -32,7 +33,8 @@ public class TaskController {
 	
 	
 	public <T> void  start(String rootUrl,HttpMethod method ,RequestParams params,LincolnCallBack<JSONObject> callback){
-		HttpTask task = new HttpTask(rootUrl,method, callback);
+		LogUtil.d("url:"+rootUrl);
+		HttpTask task = new HttpTask(rootUrl,method, params,callback);
 		executor.submit(task);
 	}
 	

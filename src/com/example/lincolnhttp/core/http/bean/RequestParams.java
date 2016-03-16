@@ -21,4 +21,9 @@ public class RequestParams implements Serializable {
 	public static Map<String, String> getMapString(){
 		return mapString;
 	}
+	@Override
+	public String toString() {
+		return mapString.toString();
+	}
+	
 }
