@@ -50,9 +50,16 @@ public class HttpTask implements Runnable{
 			}
 			String resultString = byteOutSteam.toString();
 			JSONObject object = new JSONObject(resultString);
-			callBack.onSuccess(null, object);
+			//响应码>=300,即为失败
+			if (urlConnection.getResponseCode() >= 300) {
+				String msg = urlConnection.getResponseMessage();
+				callBack.onFailed(msg);
+			}else {
+				callBack.onSuccess(null, object);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			callBack.onFailed("请求异常");
 		}
 	
 	}

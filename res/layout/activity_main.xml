@@ -14,7 +14,8 @@
         android:id="@+id/desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="结果描述部分"/>
+        android:text="结果描述部分"
+        android:layout_marginBottom="20dp"/>
 
 	<Button
 		android:id="@+id/btn_get"
@@ -41,5 +42,11 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="Delete Request" />
+	
+	<Button
+		android:id="@+id/btn_exception"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="异常请求" />
 
 </LinearLayout>

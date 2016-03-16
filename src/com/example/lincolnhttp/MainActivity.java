@@ -34,6 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		findViewById(R.id.btn_put).setOnClickListener(this);
 		findViewById(R.id.btn_patch).setOnClickListener(this);
 		findViewById(R.id.btn_delete).setOnClickListener(this);
+		findViewById(R.id.btn_exception).setOnClickListener(this);
 	}
 
 	@Override
@@ -50,8 +51,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 
 				@Override
-				public void onFailed() {
+				public void onFailed(String msg) {
+					SetTextView(msg);
 				}
+
 			});
 
 			break;
@@ -65,8 +68,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 
 				@Override
-				public void onFailed() {
+				public void onFailed(String msg) {
+					SetTextView(msg);
 				}
+
 			});
 
 			break;
@@ -80,8 +85,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 
 				@Override
-				public void onFailed() {
+				public void onFailed(String msg) {
+					SetTextView(msg);
 				}
+
 			});
 
 			break;
@@ -95,8 +102,10 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 
 				@Override
-				public void onFailed() {
+				public void onFailed(String msg) {
+					SetTextView(msg);
 				}
+
 			});
 
 			break;
@@ -110,17 +119,35 @@ public class MainActivity extends Activity implements OnClickListener {
 				}
 
 				@Override
-				public void onFailed() {
+				public void onFailed(String msg) {
+					SetTextView(msg);
 				}
+
 			});
 
+			break;
+		case R.id.btn_exception:
+			params.put("name", "异常");
+			HttpUtil.get("get/exception", params, new JsonObjectCallback<JSONObject>() {
+				@Override
+				public void onSuccess(HttpResult result, JSONObject t) {
+					LogUtil.d("onSuccess" + t.toString());
+					SetTextView(t.toString());
+				}
+
+				@Override
+				public void onFailed(String msg) {
+					SetTextView(msg);
+				}
+
+			});
 			break;
 		}
 	}
 
 	private void SetTextView(final String content) {
 		runOnUiThread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				descView.setText(content);
