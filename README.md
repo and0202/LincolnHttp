@@ -3,7 +3,8 @@
 
 #使用方法：
   Get请求：
-      RequestParams params = new RequestParams();
+      
+      			RequestParams params = new RequestParams();
 			params.put("name", "get");
 			HttpUtil.get("get", params, new JsonObjectCallback<JSONObject>() {
 				@Override
