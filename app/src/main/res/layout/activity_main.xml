@@ -1,0 +1,80 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+>
+
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="返回JSONObject接口测试：" />
+	<TextView
+		android:id="@+id/desc"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="结果描述部分"
+		android:layout_marginBottom="20dp" />
+	<Button
+		android:id="@+id/btn_get"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Get Request" />
+	<Button
+		android:id="@+id/btn_post"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Post Request" />
+	<Button
+		android:id="@+id/btn_put"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Put Request" />
+	<Button
+		android:id="@+id/btn_patch"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Patch Request" />
+	<Button
+		android:id="@+id/btn_delete"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Delete Request" />
+
+	<Button
+		android:id="@+id/btn_exception"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="异常请求" />
+
+	<TextView
+		android:id="@+id/desc"
+		android:layout_marginTop="10dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="返回JSONOArray接口测试：" />
+	<TextView
+		android:id="@+id/desc_array"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="结果描述部分"
+		android:layout_marginBottom="20dp" />
+	<Button
+		android:id="@+id/btn_get_array"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Get Request" />
+
+	<Button
+		android:id="@+id/btn_get_download"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Get Download Request" />
+</LinearLayout>
